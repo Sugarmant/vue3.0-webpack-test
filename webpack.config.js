@@ -34,6 +34,14 @@ module.exports = {
                 test: /\.(png|jpe?g|gif)$/i,
                 type: 'asset/resource'
             },
+            {
+                test:/\.less$/,
+                use:[
+                    {loader:'style-loader'},
+                    {loader:'css-loader'},
+                    {loader:'less-loader'}
+                ]
+            }
         ],
     },
     devtool: 'inline-source-map',
