@@ -3,10 +3,9 @@ const path = require('path');
 const { VueLoaderPlugin } = require('vue-loader')	
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
-    entry: './src/main.js',	//打包的入口
+    entry: './src/main.ts',	//打包的入口
     //设置打包的出口
     output: {
-        filename: 'main.js',
         path: path.resolve(__dirname, 'dist'),
         clean:true
     },
@@ -15,6 +14,7 @@ module.exports = {
         alias: {
             '@': path.join(__dirname, 'src')
         },
+        extensions: ['vue', '.js', '.ts']
     },
     //添加模块
     module:{
@@ -33,6 +33,22 @@ module.exports = {
             {//设置加载图片资源的规则
                 test: /\.(png|jpe?g|gif)$/i,
                 type: 'asset/resource'
+            },
+            // {
+            //     test:/\.ts$/,
+            //     exclude:/node_modules/,
+            //     // enforce:"pre",
+            //     loader:'tslint-loader'
+            // },
+            {
+                test: /\.tsx?$/,
+                loader: 'ts-loader',
+                exclude: /node_modules/,
+                options:{
+                    transpileOnly: true,
+                    appendTsSuffixTo:[/\.vue$/],
+                    happyPackMode: true
+                }
             },
         ],
     },
