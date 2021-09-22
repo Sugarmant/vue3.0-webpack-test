@@ -34,20 +34,12 @@ module.exports = {
                 test: /\.(png|jpe?g|gif)$/i,
                 type: 'asset/resource'
             },
-            // {
-            //     test:/\.ts$/,
-            //     exclude:/node_modules/,
-            //     // enforce:"pre",
-            //     loader:'tslint-loader'
-            // },
             {
                 test: /\.tsx?$/,
                 loader: 'ts-loader',
                 exclude: /node_modules/,
                 options:{
-                    transpileOnly: true,
                     appendTsSuffixTo:[/\.vue$/],
-                    happyPackMode: true
                 }
             },
         ],
